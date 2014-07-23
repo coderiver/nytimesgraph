@@ -45,7 +45,7 @@ body { font-family: "pf", sans-serif; font-size: 16px; line-height: 1.375; color
 .header .share:hover { color: #3b6997; }
 .header .share i { display: inline-block; background: url('../img/icons-scfcd8307e2.png') 0 -188px no-repeat; width: 19px; height: 15px; margin-right: 5px; vertical-align: middle; position: relative; top: -1px; }
 
-.g { height: 150px; margin-bottom: 30px; position: relative; }
+.g { min-height: 150px; margin-bottom: 30px; position: relative; margin-top: 30px; }
 .g .g__chart { width: 400px; position: absolute; right: 0; top: 0; background: url("../img/chart.png") no-repeat 0 0; width: 439px; height: 87px; }
 .g .g__value { position: absolute; left: 0; bottom: 86px; width: 132px; font-size: 25px; color: #4b4b4b; }
 .g .g__value .g__valueinput { width: 132px; font-size: 25px; color: #4b4b4b; border: 1px solid white; }

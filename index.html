@@ -6,6 +6,24 @@
 	<meta name="viewport" content="initial-scale=1"/>
 	<link rel="stylesheet" media="screen" href="css/screen.css" >
 	<!--[if IE]><script src="js/html5shiv.js"></script><![endif]-->
+
+<!-- start shit -->
+	<link rel="stylesheet" type="text/css" media="screen" href="http://a1.nyt.com/assets/interactive/20140717-220809/css/foundation/magnum.css" />
+	<link rel="stylesheet" href="t.css">
+	<script>
+	var require = {
+	    baseUrl: 'http://a1.nyt.com/assets/',
+	    waitSeconds: 20,
+	    paths: {
+	        'foundation': 'interactive/20140717-220809/js/foundation'
+	    }
+	};
+	</script>
+	<script data-main="foundation/main" src="http://a1.nyt.com/assets/interactive/20140717-220809/js/foundation/lib/framework.js"></script>
+	<script>
+	require(["foundation/main"], function() { require(["http://graphics8.nytimes.com/newsgraphics/2014/03/05/buy-vs-rent/fad21228540a5e6c28fae3bc218263ce09de2234/runtime.js"]); });
+	</script>
+<!-- end shit -->
 </head>
 <body>
 
@@ -26,8 +44,25 @@
 		<div class="l-col1">
 			<!-- begin content  -->
 			<div class="content">
-				<h2>Ist es besser zu Kaufen oder zu Mieten?
-</h2>
+				<div class="g">
+					<div class="g-parameters">
+					<div class="g-axis-label">EQUIVALENT<br>RENT</div>
+					<label class="g-parameter"
+					    data-parameter="buyPrice"
+					    data-value="250000"
+					    data-type="bigDollars"
+					    data-restrict="Math.max(3e4, Math.min(3e6, d3.round(v < 1000 ? v * 1000 : v, -3)))"
+					    data-scale="d3.scale.log().domain([3e4, 3e6])"
+					    data-scale-format="$s"
+					    data-height="240">
+					  <div class="g-parameter-label"></div>
+					</label>
+					</div>
+					<div id="g-fixed-container">
+
+					</div>
+				</div>
+				<h2>Ist es besser zu Kaufen oder zu Mieten?</h2>
 				<p>Die Entscheidung eine Immobilie zu kaufen ist eine der größten finanziellen Entscheidungen vieler Menschen im ganzen Leben. Bei dieser Entscheidung gehen eine Vielzahl von Faktoren ein, die bestimmen ob der Kauf einem Mietverhältnis vorzuziehen ist. Dieser Kauf-Miet-Rechner analysiert die wesentlichen Kosten die beim Kauf entstehen und errechnet die äquivalente monatliche Miete. </p>
 				<h2>Kaufpreis</h2>
 				<p>Ein sehr wichtiger, aber nicht der einzige relevante Faktor. Die Variablen unten werden die Entscheidung weiter verfeinern... Wenn Sie es eilig haben, reicht es wenn Sie eingeben, wie teuer der Kaufpreis ist, wie lange Sie in der Immobilie wohnen wollen und wieviel Eigenkapital Sie einbringen wollen. Für alle anderen Variablen haben wir bereits Annahmen für Sie getroffen.</p>
