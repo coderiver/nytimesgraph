@@ -1,0 +1,305 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Template</title>
+    <meta name="viewport" content="initial-scale=1"/>
+    <link rel="stylesheet" media="screen" href="css/screen.css" >
+    <!--[if IE]><script src="js/html5shiv.js"></script><![endif]-->
+<style>
+    body {
+        padding: 100px;
+        font: 10px sans-serif;
+    }
+    .bar rect {
+        fill: #e68950;
+        shape-rendering: crispEdges;
+    }
+    .bar.active rect {
+        fill: #4b4b4b;
+    }
+    .bar text {
+        fill: #fff;
+    }
+    .bar .bubble {
+        display: none;
+        }
+    .bar.active .bubble {
+        display: block;
+    }
+    .bar .bubble text {
+        fill: #000;
+        font-size: 12px;
+    }
+    .axis path, .axis line {
+        fill: none;
+        shape-rendering: crispEdges;
+    }
+    .axis line {
+        stroke: #9ea7b3;
+    }
+    .tick text {
+        fill: #9ea7b3;
+        font-size: 12px;
+    }
+    polygon {
+        fill: white; shape-rendering: crispEdges;
+    }
+
+    .input-range {
+        position: absolute;
+        bottom: 30px;
+        right: 26px;
+        width: 421px;
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+        height: 1px;
+        background: #9EA7B3;
+        margin: 0;
+        border: none;
+        outline: none; /* no focus outline */
+    }
+    .input-range::-moz-range-track {
+      border: inherit;
+      background: transparent;
+    }
+
+    .input-range::-ms-track {
+      border: inherit;
+      color: transparent; /* don't drawn vertical reference line */
+      background: transparent;
+    }
+
+    .input-range::-ms-fill-lower,
+    .input-range::-ms-fill-upper {
+      background: transparent;
+    }
+
+    .input-range::-ms-tooltip {
+      display: none;
+    }
+
+    /* thumb */
+
+    .input-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 13px;
+      height: 13px;
+      border: 1px solid #fff;
+      border-radius: 50px;
+      background: #262239;
+    }
+    .input-range::-moz-range-thumb {
+      width: 13px;
+      height: 13px;
+      border: 1px solid #fff;
+      border-radius: 50px;
+      background: #262239;
+    }
+
+    .input-range::-ms-thumb {
+      width: 13px;
+      height: 13px;
+      border-radius: 50px;
+      border: 1px solid #fff;
+      background: #262239;
+    }
+
+    .input-text {
+        position: absolute;
+        left: 0;
+        bottom: 30px;
+        width: 131px;
+        border-bottom: #9EA7B3 1px solid;
+        font-size: 25px;
+        color: #4B4B4B;
+    }
+
+
+    #test1,
+    #test2,
+    #test3 {
+        position: relative;
+        padding: 0;
+        margin: 0px;
+        width: 620px;
+    }
+
+    .y.axis line { stroke: none;}
+
+</style>
+<body>
+    <svg style="display: none" viewBox="0 0 10 10">
+        <define>
+            <g id="bubble"></g>
+        </define>
+    </svg>
+    <div id="test1"></div>
+    <div id="test3"></div>
+    <div id="test2"></div>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script>
+        var nytimesgraph = function (element, data) {
+            var that = this;
+
+            this.scale = true;
+
+            var rootEl = d3.select(element);
+            var value = 150;
+
+
+            // A formatter for counts.
+            var formatCount = d3.format(",.0f");
+
+            var margin = {top: 0, right: 30, bottom: 30, left: 180},
+                    width = 620 - margin.left - margin.right,
+                    height = 200 - margin.top - margin.bottom;
+
+            var x = d3.scale.linear()
+                    .domain([0, data.length])
+                    .range([0, width]);
+
+            var y = d3.scale.linear()
+                    .domain([0, d3.max(data)])
+                    .range([height, 0]);
+
+            var valAprox = d3.scale.quantile()
+                    .domain([d3.min(data), d3.max(data)])
+                    .range(data);
+
+            var xAxis = d3.svg.axis()
+                    .scale(d3.scale.linear().domain([d3.min(data), d3.max(data)]).range([0, width]))
+                    .orient("bottom");
+
+            var yAxis = d3.svg.axis()
+                    .scale(d3.scale.linear().domain([0, value * 2]).range([height, 0]))
+                    .tickSize(-width).tickSubdivide(true)
+                    .orient("right");
+
+            var svg = rootEl.append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            var inputEl = rootEl.append("input")
+                    .attr("type", "text")
+                    .attr("class", "input-text")
+                    .attr("value", value);
+
+            var rangeEl = rootEl.append("input")
+                            .attr("type", "range")
+                            .attr("class", "input-range")
+                            .attr("value", value)
+                            .attr("min", d3.min(data))
+                            .attr("max", d3.max(data))
+                            .attr("step", 1);
+
+            function render (value, options) {
+                options = options || {};
+                var canvas = bar;
+
+                if (that.scale) {
+                    if (options.animate) { canvas = canvas.transition(); }
+
+                    y.domain([0, value]);
+
+                    canvas
+                            .attr('class', 'bar')
+                            .attr("transform", function (d, i) {
+                                return "translate(" + x(i) + "," + y(d/2) + ")";
+                            })
+
+
+                    canvas.selectAll('rect')
+                            .attr("height", function(d) { // Set bars height
+                                return height - y(d/2);
+                            })
+
+                    canvas
+                            .filter(function (d) { return - y(d) > height})
+                            .attr('class', 'bar over')
+
+                    canvas.select('polygon')
+                            .attr("points", function(d){
+                                var dY = - y(d/2)  ;
+                                return '0 '+ dY +', '+ barWidth +' '+ dY +', '+ barWidth +' '+ (dY + barWidth/2) +', '+ barWidth/2 +' '+ (dY) +', 0 '+ (dY + barWidth/2) ;
+                            })
+
+                    yAxis.scale(d3.scale.linear().domain([0, value * 2]).range([height, 0]));
+                    yAxisEl.call(yAxis);
+                }
+
+                // Set active element
+                canvas
+                        .attr('class', "bar")
+                        .filter(function(d){ return d == valAprox(value);})
+                        .attr('class', "bar active")
+            }
+
+            inputEl.on('input', function(){
+                var value = parseInt(inputEl[0][0].value, 10) || rangeEl[0][0].value || 20;
+                rangeEl[0][0].value = value;
+
+                render(value, {animate: true});
+            });
+
+            rangeEl.on("input", function(){
+                var value = parseInt(rangeEl[0][0].value, 10);
+                inputEl[0][0].value =  value;
+
+                render(value);
+            });
+
+            var barWidth = (Math.round(width/data.length)  - 2);
+
+            var bar = svg.selectAll(".bar")
+                    .data(data)
+                    .enter().append("g")
+                    .attr("class", "bar");
+
+            bar.append("rect")
+                    .attr("x", 0)
+                    .attr("width", barWidth);
+
+
+            bar.append("polygon");
+
+            var bubbles = bar.append("g")
+                    .attr("class", "bubble");
+
+            bubbles.append("use")
+                    .attr("xlink:href", "#bubble");
+
+            bubbles.append("text")
+                    .attr("dy", ".75em")
+                    .attr("y", -16)
+                    .attr("x", barWidth/2)
+                    .attr("text-anchor", "middle")
+                    .text(function(d) { return formatCount(d);});
+
+            svg.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis);
+
+            var yAxisEl = svg.append("g");
+
+            yAxisEl
+                .attr("class", "y axis")
+                .attr("transform", "translate(" + width + ", 0)");
+
+
+            render(value);
+        };
+
+        new nytimesgraph("#test1", d3.range(40).map(function(val, i){ return (i+1) * 8}));
+        new nytimesgraph("#test2", [10, 13, 14, 15, 16, 60, 70, 71, 73, 80, 120, 121,
+                                133, 142, 148, 151, 152, 154, 160, 170, 171, 172,
+                                173, 190, 200, 300, 311, 312, 313, 314, 315, 320, 322, 325]);
+
+        var noScaleInstanse = new nytimesgraph("#test3", d3.range(40).map(function(val, i){ return (i+1) * 8}));
+        noScaleInstanse.scale = false;
+
+
+    </script>
