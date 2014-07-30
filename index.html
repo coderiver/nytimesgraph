@@ -5,28 +5,8 @@
 	<title>Template</title>
 	<meta name="viewport" content="initial-scale=1"/>
 	<link rel="stylesheet" media="screen" href="css/screen.css" >
-	<!--[if IE]><script src="js/html5shiv.js"></script><![endif]-->
-
-<!-- start shit -->
-	<link rel="stylesheet" type="text/css" media="screen" href="http://a1.nyt.com/assets/interactive/20140717-220809/css/foundation/magnum.css" />
-	<link rel="stylesheet" href="t.css">
-	<script>
-	var require = {
-	    baseUrl: 'http://a1.nyt.com/assets/',
-	    waitSeconds: 20,
-	    paths: {
-	        'foundation': 'interactive/20140717-220809/js/foundation'
-	    }
-	};
-	</script>
-	<script data-main="foundation/main" src="http://a1.nyt.com/assets/interactive/20140717-220809/js/foundation/lib/framework.js"></script>
-	<script>
-	require(["foundation/main"], function() { require(["http://graphics8.nytimes.com/newsgraphics/2014/03/05/buy-vs-rent/fad21228540a5e6c28fae3bc218263ce09de2234/runtime.js"]); });
-	</script>
-<!-- end shit -->
 </head>
 <body>
-
 <!-- BEGIN  out-->
 <div class="out">
 	<!-- begin header  -->
@@ -44,245 +24,44 @@
 		<div class="l-col1">
 			<!-- begin content  -->
 			<div class="content">
-				<div class="g">
-					<div class="g-parameters">
-					<div class="g-axis-label">EQUIVALENT<br>RENT</div>
-					<label class="g-parameter"
-					    data-parameter="buyPrice"
-					    data-value="250000"
-					    data-type="bigDollars"
-					    data-restrict="Math.max(3e4, Math.min(3e6, d3.round(v < 1000 ? v * 1000 : v, -3)))"
-					    data-scale="d3.scale.log().domain([3e4, 3e6])"
-					    data-scale-format="$s"
-					    data-height="240">
-					  <div class="g-parameter-label"></div>
-					</label>
-					</div>
-					<div id="g-fixed-container">
-
-					</div>
-				</div>
 				<h2>Ist es besser zu Kaufen oder zu Mieten?</h2>
 				<p>Die Entscheidung eine Immobilie zu kaufen ist eine der größten finanziellen Entscheidungen vieler Menschen im ganzen Leben. Bei dieser Entscheidung gehen eine Vielzahl von Faktoren ein, die bestimmen ob der Kauf einem Mietverhältnis vorzuziehen ist. Dieser Kauf-Miet-Rechner analysiert die wesentlichen Kosten die beim Kauf entstehen und errechnet die äquivalente monatliche Miete. </p>
+				<div id="test1" class="graph"></div>
 				<h2>Kaufpreis</h2>
 				<p>Ein sehr wichtiger, aber nicht der einzige relevante Faktor. Die Variablen unten werden die Entscheidung weiter verfeinern... Wenn Sie es eilig haben, reicht es wenn Sie eingeben, wie teuer der Kaufpreis ist, wie lange Sie in der Immobilie wohnen wollen und wieviel Eigenkapital Sie einbringen wollen. Für alle anderen Variablen haben wir bereits Annahmen für Sie getroffen.</p>
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
+				<div id="test2" class="graph"></div>
 				<h2>Wie lange wollen Sie die Immobilie bewohnen?</h2>
 				<p>Je länger Sie in der Immobilie wohnen wollen, desto attraktiver wird der Kauf, da sich die Einmalkosten des Kaufs über viele Jahre verteilen. </p>
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
+				<div id="test3" class="graph"></div>
 				<h2>Kauf/Verkaufs-Nebenkosten</h2>
 				<p>Bei Kauf und dem Verkauf einer Immobilie <br>fallen Gebühren, Steuern und Kosten an. .</p>
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="$ 100,00">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
 				<h2>Hypothek</h2>
 				<p>Das eingebrachte Eigenkapital (typischerweise 20-30%), der Zinssatz und Ihre monatliche Rate bestimmt die Rückzahlungsdauer für die Hypothek
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
 				<div class="hr"></div>
 				<h2>Eckdaten der Hypothek</h2>
-				<p>Gesamtvolumen der Hypothek 
-(Kaufpreis plus Nebenkosten minus Eigenkaptital):			613‘000 EUR
-Entspricht einer Tilgung im ersten Jahr von:				           2.09%
-Jahre bis zur vollständigen Tilgung der Hypothek:			           24.2 Jahre.</p>
+				<p>Gesamtvolumen der Hypothek (Kaufpreis plus Nebenkosten minus Eigenkaptital): 613‘000 EUR Entspricht einer Tilgung im ersten Jahr von: 2.09% Jahre bis zur vollständigen Tilgung der Hypothek: 24.2 Jahre.</p>
 				<div class="hr"></div>
 				<h2>Laufende Kosten bei Immobilieneigentum</h2>
 				<p>Beim Eigentum einer Immobilie fallen Gebühren, Steuern und Kosten an.</p>
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
 				<h2>Was bringt die Zukunft?</h2>
 				<p>Die Wertentwicklung der Immobilie, Inflationsrate und die Rendite die Sie mit dem investierten Geld alternativ erwirtschaften könnten hat wesentlichen Einfluß</p>
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
-
 				<h2>Kosten wenn Sie diese Immobilie mieten würden</h2>
 				<p>Neben der Kaltmiete fallen dem Mieter weitere Kosten wie Makler und Kaution an. Die Kosten der Warmmiete werden nicht berücksichtigt, da diese beim Kauf ebenfalls anfallen</p>
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
-				<!-- begin g  -->
-				<div class="g">
-					<div class="g__value">
-						<input type="text" class="g__valueinput" value="100">
-						<div class="g__valuereset"></div>
-					</div>
-					<div class="g__chart"></div>
-				</div>
-				<!-- end g -->
-
 				<h2>Methodologie</h2>
 				<p>Der Kauf-Miet-Rechner berechnet den Barwert für Ihre beiden Optionen – Kauf einer Immobilie zur Eigennutzung oder Miete der Immobilie.</p>
-
 				<p>Dabei werden die wesentlichen Kosten und Einflussgrößen berücksichtigt. Alle Größen sind als Barwerte angegeben – d.h. Zahlungsströme die in der Zukunft anfallen sind abgezinst mit der Rendite, die Sie in einer alternativen Anlage (Aktien, Anleihen,...) erwirtschaften könnten. Das ist insbesondere bedeutsam für das Eigenkapital das Sie einbringen.</p>
-
 				<h3>Kauf</h3>
 				<p><strong>Initiale Kosten</strong> sind die Kosten die beim Kauf der Immobilie anfallen. Diese beinhalten das eingebrachte Eigenkapital und die Kauf-Nebenkosten.</p>
-				 
 				<p><strong>Laufende Kosten</strong> sind die Kosten die Sie beim Kauf monatlich oder jährlich tragen müssen. Diese beinhalten die Zins- und Tilgungszahlungen, Instandhaltungskosten, Grundsteuer und andere laufende Kosten.</p>
-				 
 				<p><strong>Netto-Erlös</strong> ist der Betrag den Sie beim Verkauf der Immobilie erhalten, abzüglich der Verkaufskosten und der restlichen ausstehenden Hypothek. Ein negativer Betrag bedeutet, dass Sie Eigentum aufgebaut haben und verringert die Kosten des Kaufs.</p>
-
 				<h3>Miete</h3>
 				<p><strong>Initiale Kosten</strong> beinhalten die Kaution und eine mögliche Maklerprovision.</p>
-
 				<p><strong>Laufende Kosten</strong> entsprechen dem Barwert der Kaltmiete über den Mietzeitraum.</p>
-				 
 				<p><strong>Netto-Erlös</strong> der Barwert Ihrer Kaution, die Sie zum Mietende zurück erhalten.</p>
-
-
 			</div>
 			<!-- end content -->
 		</div>
 		<!-- end l-col1 -->
-
 		<!-- begin l-col2  -->
 		<div class="l-col2">
 			<div class="result">
@@ -291,8 +70,7 @@ Jahre bis zur vollständigen Tilgung der Hypothek:			           24.2 Jahre.</p>
 					<div class="result__valuevalue">€ 1,669</div>
 					<div class="result__label">PRO<br>MONAT</div>
 				</div>
-				<div class="result__b">...lohnt sich der Kauf gegenüber 
-dem Mietverhältnis</div>
+				<div class="result__b">...lohnt sich der Kauf gegenüber dem Mietverhältnis</div>
 				<table class="result__table">
 					<thead>
 						<tr>
@@ -339,8 +117,173 @@ dem Mietverhältnis</div>
 	</div>
 	<!-- end l -->
 </div>
-<!-- END out-->
 
+<!-- END out-->
 <script src="js/lib/head.js" data-headjs-load="js/init.js"></script>
+<!-- d3 -->
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+	var nytimesgraph = function (element, data) {
+		var that = this;
+
+		this.scale = true;
+
+		var rootEl = d3.select(element);
+		var value = 150;
+
+
+		// A formatter for counts.
+		var formatCount = d3.format(",.0f");
+
+		var margin = {top: 0, right: 30, bottom: 30, left: 180},
+				width = 620 - margin.left - margin.right,
+				height = 200 - margin.top - margin.bottom;
+
+		var x = d3.scale.linear()
+				.domain([0, data.length])
+				.range([0, width]);
+
+		var y = d3.scale.linear()
+				.domain([0, d3.max(data)])
+				.range([height, 0]);
+
+		var valAprox = d3.scale.quantile()
+				.domain([d3.min(data), d3.max(data)])
+				.range(data);
+
+		var xAxis = d3.svg.axis()
+				.scale(d3.scale.linear().domain([d3.min(data), d3.max(data)]).range([0, width]))
+				.orient("bottom");
+
+		var yAxis = d3.svg.axis()
+				.scale(d3.scale.linear().domain([0, value * 2]).range([height, 0]))
+				.tickSize(-width).tickSubdivide(true)
+				.orient("right");
+
+		var svg = rootEl.append("svg")
+				.attr("width", width + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+				.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+		var inputEl = rootEl.append("input")
+				.attr("type", "text")
+				.attr("class", "input-text")
+				.attr("value", value);
+
+		var rangeEl = rootEl.append("input")
+						.attr("type", "range")
+						.attr("class", "input-range")
+						.attr("value", value)
+						.attr("min", d3.min(data))
+						.attr("max", d3.max(data))
+						.attr("step", 1);
+
+		function render (value, options) {
+			options = options || {};
+			var canvas = bar;
+
+			if (that.scale) {
+				if (options.animate) { canvas = canvas.transition(); }
+
+				y.domain([0, value]);
+
+				canvas
+						.attr('class', 'bar')
+						.attr("transform", function (d, i) {
+							return "translate(" + x(i) + "," + y(d/2) + ")";
+						})
+
+
+				canvas.selectAll('rect')
+						.attr("height", function(d) { // Set bars height
+							return height - y(d/2);
+						})
+
+				canvas
+						.filter(function (d) { return - y(d) > height})
+						.attr('class', 'bar over')
+
+				canvas.select('polygon')
+						.attr("points", function(d){
+							var dY = - y(d/2)  ;
+							return '0 '+ dY +', '+ barWidth +' '+ dY +', '+ barWidth +' '+ (dY + barWidth/2) +', '+ barWidth/2 +' '+ (dY) +', 0 '+ (dY + barWidth/2) ;
+						})
+
+				yAxis.scale(d3.scale.linear().domain([0, value * 2]).range([height, 0]));
+				yAxisEl.call(yAxis);
+			}
+
+			// Set active element
+			canvas
+					.attr('class', "bar")
+					.filter(function(d){ return d == valAprox(value);})
+					.attr('class', "bar active")
+		}
+
+		inputEl.on('input', function(){
+			var value = parseInt(inputEl[0][0].value, 10) || rangeEl[0][0].value || 20;
+			rangeEl[0][0].value = value;
+
+			render(value, {animate: true});
+		});
+
+		rangeEl.on("input", function(){
+			var value = parseInt(rangeEl[0][0].value, 10);
+			inputEl[0][0].value =  value;
+
+			render(value);
+		});
+
+		var barWidth = (Math.round(width/data.length)  - 2);
+
+		var bar = svg.selectAll(".bar")
+				.data(data)
+				.enter().append("g")
+				.attr("class", "bar");
+
+		bar.append("rect")
+				.attr("x", 0)
+				.attr("width", barWidth);
+
+
+		bar.append("polygon");
+
+		var bubbles = bar.append("g")
+				.attr("class", "bubble");
+
+		bubbles.append("use")
+				.attr("xlink:href", "#bubble");
+
+		bubbles.append("text")
+				.attr("dy", ".75em")
+				.attr("y", -16)
+				.attr("x", barWidth/2)
+				.attr("text-anchor", "middle")
+				.text(function(d) { return formatCount(d);});
+
+		svg.append("g")
+				.attr("class", "x axis")
+				.attr("transform", "translate(0," + height + ")")
+				.call(xAxis);
+
+		var yAxisEl = svg.append("g");
+
+		yAxisEl
+			.attr("class", "y axis")
+			.attr("transform", "translate(" + width + ", 0)");
+
+
+		render(value);
+	};
+
+	new nytimesgraph("#test1", d3.range(40).map(function(val, i){ return (i+1) * 8}));
+	new nytimesgraph("#test2", [10, 13, 14, 15, 16, 60, 70, 71, 73, 80, 120, 121,
+							133, 142, 148, 151, 152, 154, 160, 170, 171, 172,
+							173, 190, 200, 300, 311, 312, 313, 314, 315, 320, 322, 325]);
+
+	var noScaleInstanse = new nytimesgraph("#test3", d3.range(40).map(function(val, i){ return (i+1) * 8}));
+	noScaleInstanse.scale = false;
+</script>
 </body>
 </html>

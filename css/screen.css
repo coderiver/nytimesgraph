@@ -25,6 +25,35 @@ table { border-spacing: 0; border-collapse: collapse; width: 100%; }
 
 body { font-family: "pf", sans-serif; font-size: 16px; line-height: 1.375; color: #4b4b4b; }
 
+.bar rect { fill: #e68950; shape-rendering: crispEdges; }
+.bar.active rect { fill: #4b4b4b; }
+.bar text { fill: white; }
+.bar .bubble { display: none; }
+.bar.active .bubble { display: block; }
+.bar .bubble text { fill: black; font-size: 12px; }
+
+.axis path { fill: none; shape-rendering: crispEdges; }
+.axis line { fill: none; shape-rendering: crispEdges; stroke: #9ea7b3; }
+
+.tick text { fill: #9ea7b3; font-size: 12px; }
+
+polygon { fill: white; shape-rendering: crispEdges; }
+
+.input-range { position: absolute; bottom: 30px; right: 26px; width: 421px; -webkit-appearance: none; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); height: 1px; background: #9ea7b3; margin: 0; border: none; outline: none; }
+.input-range::-moz-range-track { border: inherit; background: transparent; }
+.input-range::-ms-track { border: inherit; color: transparent; background: transparent; }
+.input-range::-ms-fill-lower, .input-range::-ms-fill-upper { background: transparent; }
+.input-range::-ms-tooltip { display: none; }
+.input-range::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px; border: 1px solid white; border-radius: 50px; background: #262239; }
+.input-range::-moz-range-thumb { width: 13px; height: 13px; border: 1px solid white; border-radius: 50px; background: #262239; }
+.input-range::-ms-thumb { width: 13px; height: 13px; border-radius: 50px; border: 1px solid white; background: #262239; }
+
+.input-text { position: absolute; left: 0; bottom: 30px; width: 131px; border-bottom: #9ea7b3 1px solid; font-size: 25px; color: #4b4b4b; }
+
+#test1, #test2, #test3 { position: relative; padding: 0; margin: 0px; width: 620px; }
+
+.y.axis line { stroke: none; }
+
 .out { width: 960px; margin: 0 auto; }
 
 .l { *zoom: 1; }
