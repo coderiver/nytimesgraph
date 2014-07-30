@@ -319,6 +319,7 @@
 			event.preventDefault();
 			myi = $(this).parents('.graph').find('.input-text');
 			myi.val(myi.data('default'));
+			myi.trigger('input');
 		});
 	});
 </script>
