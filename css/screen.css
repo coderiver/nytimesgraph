@@ -54,6 +54,18 @@ polygon { fill: white; shape-rendering: crispEdges; }
 
 .y.axis line { stroke: none; }
 
+.graph .graph__title { margin-bottom: 10px; text-align: right; }
+.graph .graph__title span { display: inline-block; width: 70px; text-align: center; vertical-align: top; font-size: 14px; color: #9ea7b3; }
+.graph .graph__info { width: 160px; font-size: 14px; color: #4b4b4b; }
+
+.info { position: relative; display: inline-block; margin-left: 10px; vertical-align: middle; }
+.info:hover .info__ico { opacity: 0.8; }
+.info:hover .info__up { display: block; }
+.info .info__ico { display: block; background: url('../img/icons-sb5bf7df7e4.png') 0 -260px no-repeat; width: 13px; height: 13px; }
+.info .info__up { display: none; position: absolute; left: -13px; top: 20px; width: 320px; text-align: left; }
+.info .info__content { position: relative; display: inline-block; padding: 5px 8px; vertical-align: top; border: 1px solid #ceced0; background: white; border-radius: 3px; color: #9ea7b3; font-size: 14px; }
+.info .info__content:before { content: ""; position: absolute; top: -7px; left: 15px; background: url('../img/icons-sb5bf7df7e4.png') 0 -213px no-repeat; width: 8px; height: 7px; }
+
 .out { width: 960px; margin: 0 auto; }
 
 .l { *zoom: 1; }
@@ -62,24 +74,24 @@ polygon { fill: white; shape-rendering: crispEdges; }
 .l .l-col2 { float: right; width: 264px; margin-top: 50px; }
 
 .header { height: 82px; position: relative; margin-bottom: 30px; border-bottom: 1px solid #9ea7b2; }
-.header h1 { background: url('../img/icons-scfcd8307e2.png') 0 0 no-repeat; width: 402px; height: 32px; position: absolute; top: 22px; left: 0; font: 0/0 a; text-shadow: none; color: transparent; }
+.header h1 { background: url('../img/icons-sb5bf7df7e4.png') 0 0 no-repeat; width: 402px; height: 32px; position: absolute; top: 22px; left: 0; font: 0/0 a; text-shadow: none; color: transparent; }
 .header .follow { position: absolute; width: 50%; right: 0; font-size: 12px; color: #9ea7b2; text-transform: uppercase; text-align: right; top: 33px; }
 .header .follow span { vertical-align: middle; display: inline-block; position: relative; top: 2px; }
 .header .follow a { display: inline-block; text-decoration: none; vertical-align: middle; margin-left: 11px; }
 .header .follow a:hover { opacity: 0.8; }
-.header .follow .follow__fb { background: url('../img/icons-scfcd8307e2.png') 0 -140px no-repeat; width: 16px; height: 16px; }
-.header .follow .follow__tw { background: url('../img/icons-scfcd8307e2.png') 0 -65px no-repeat; width: 16px; height: 13px; }
-.header .follow .follow__rss { background: url('../img/icons-scfcd8307e2.png') 0 -42px no-repeat; width: 13px; height: 13px; }
+.header .follow .follow__fb { background: url('../img/icons-sb5bf7df7e4.png') 0 -140px no-repeat; width: 16px; height: 16px; }
+.header .follow .follow__tw { background: url('../img/icons-sb5bf7df7e4.png') 0 -65px no-repeat; width: 16px; height: 13px; }
+.header .follow .follow__rss { background: url('../img/icons-sb5bf7df7e4.png') 0 -42px no-repeat; width: 13px; height: 13px; }
 .header .share { position: absolute; bottom: -30px; right: 0; cursor: pointer; text-decoration: none; font-size: 12px; color: #72a2d1; text-transform: uppercase; }
 .header .share:hover { color: #3b6997; }
-.header .share i { display: inline-block; background: url('../img/icons-scfcd8307e2.png') 0 -188px no-repeat; width: 19px; height: 15px; margin-right: 5px; vertical-align: middle; position: relative; top: -1px; }
+.header .share i { display: inline-block; background: url('../img/icons-sb5bf7df7e4.png') 0 -188px no-repeat; width: 19px; height: 15px; margin-right: 5px; vertical-align: middle; position: relative; top: -1px; }
 
 .g { min-height: 150px; margin-bottom: 30px; position: relative; margin-top: 30px; }
 .g .g__chart { width: 400px; position: absolute; right: 0; top: 0; background: url("../img/chart.png") no-repeat 0 0; width: 439px; height: 87px; }
 .g .g__value { position: absolute; left: 0; bottom: 86px; width: 132px; font-size: 25px; color: #4b4b4b; }
 .g .g__value .g__valueinput { width: 132px; font-size: 25px; color: #4b4b4b; border: 1px solid white; }
 .g .g__value .g__valueinput:focus { border-bottom-color: #9ea7b2; }
-.g .g__valuereset { position: absolute; cursor: pointer; position: absolute; left: 140px; top: 5px; background: url('../img/icons-scfcd8307e2.png') 0 -88px no-repeat; width: 16px; height: 16px; }
+.g .g__valuereset { position: absolute; cursor: pointer; position: absolute; left: 140px; top: 5px; background: url('../img/icons-sb5bf7df7e4.png') 0 -88px no-repeat; width: 16px; height: 16px; }
 .g .g__valuereset:hover { background-position: 0 -114px; }
 
 .content h2 { font-size: 25px; color: #4b4b4b; margin-bottom: 1px; margin-top: 20px; font-weight: normal; }
@@ -108,10 +120,10 @@ polygon { fill: white; shape-rendering: crispEdges; }
 .links { text-align: center; }
 .links a { display: inline-block; margin-right: 17px; vertical-align: middle; }
 .links a:hover { opacity: 0.7; }
-.links .links__fb { background: url('../img/icons-scfcd8307e2.png') 0 -140px no-repeat; width: 16px; height: 16px; }
-.links .links__tw { background: url('../img/icons-scfcd8307e2.png') 0 -65px no-repeat; width: 16px; height: 13px; }
-.links .links__mail { background: url('../img/icons-scfcd8307e2.png') 0 -166px no-repeat; width: 17px; height: 12px; }
+.links .links__fb { background: url('../img/icons-sb5bf7df7e4.png') 0 -140px no-repeat; width: 16px; height: 16px; }
+.links .links__tw { background: url('../img/icons-sb5bf7df7e4.png') 0 -65px no-repeat; width: 16px; height: 13px; }
+.links .links__mail { background: url('../img/icons-sb5bf7df7e4.png') 0 -166px no-repeat; width: 17px; height: 12px; }
 .links .links__more { cursor: pointer; text-decoration: none; font-size: 12px; color: #72a2d1; text-transform: uppercase; display: inline-block; vertical-align: middle; }
 .links .links__more:hover { color: #3b6997; opacity: 1; }
 .links .links__more:hover i { opacity: 0.7; }
-.links .links__more i { display: inline-block; background: url('../img/icons-scfcd8307e2.png') 0 -188px no-repeat; width: 19px; height: 15px; margin-right: 6px; vertical-align: middle; }
+.links .links__more i { display: inline-block; background: url('../img/icons-sb5bf7df7e4.png') 0 -188px no-repeat; width: 19px; height: 15px; margin-right: 6px; vertical-align: middle; }
