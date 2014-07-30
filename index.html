@@ -31,6 +31,7 @@
 					<div id="test1" class="graph__el"></div>
 					<div class="graph__info">
 						<span>Grunderwerbssteuer</span>
+						<div class="graph__godefault"></div>
 						<div class="info">
 							<i class="info__ico"></i>
 							<div class="info__up">
@@ -131,11 +132,13 @@
 </div>
 
 <!-- END out-->
-<script src="js/lib/head.js" data-headjs-load="js/init.js"></script>
+
 <!-- d3 -->
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="js/lib/sticky.js"></script>
 <script>
-	var nytimesgraph = function (element, data, datamin, datamax) {
+	var nytimesgraph = function (element, data, datamin, datamax, defaultvalue) {
 		var that = this;
 
 		this.scale = true;
@@ -181,7 +184,8 @@
 		var inputEl = rootEl.append("input")
 				.attr("type", "text")
 				.attr("class", "input-text")
-				.attr("value", value);
+				.attr('data-default',defaultvalue)
+				.attr("value", defaultvalue);
 
 		var rangeEl = rootEl.append("input")
 						.attr("type", "range")
@@ -289,13 +293,34 @@
 		render(value);
 	};
 
-	new nytimesgraph("#test1", d3.range(40).map(function(val, i){ return (i+1) * 8}), 1, 100);
+	new nytimesgraph("#test1", d3.range(40).map(function(val, i){ return (i+1) * 8}), 1, 100, 0);
 	new nytimesgraph("#test2", [10, 13, 14, 15, 16, 60, 70, 71, 73, 80, 120, 121,
 							133, 142, 148, 151, 152, 154, 160, 170, 171, 172,
-							173, 190, 200, 300, 311, 312, 313, 314, 315, 320, 322, 325], 100, 1000);
+							173, 190, 200, 300, 311, 312, 313, 314, 315, 320, 322, 325], 100, 1000,0);
 
-	var noScaleInstanse = new nytimesgraph("#test3", d3.range(40).map(function(val, i){ return (i+1) * 8}), 20,40);
+	var noScaleInstanse = new nytimesgraph("#test3", d3.range(40).map(function(val, i){ return (i+1) * 8}), 20,40, 0);
 	noScaleInstanse.scale = false;
+
+
+
+	// handling inputs
+	$(document).ready(function() {
+		$(".l-col2").sticky({topSpacing:0});
+		$('body').on('change', '.input-text', function(event) {
+			event.preventDefault();
+			if($(this).val()!=$(this).data('default')){
+				$(this).parents('.graph').addClass('is-changed');
+			}
+			else{
+				$(this).parents('.graph').removeClass('is-changed');
+			}
+		});
+		$('body').on('click', '.graph__godefault', function(event) {
+			event.preventDefault();
+			myi = $(this).parents('.graph').find('.input-text');
+			myi.val(myi.data('default'));
+		});
+	});
 </script>
 </body>
 </html>

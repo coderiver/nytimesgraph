@@ -159,6 +159,7 @@ polygon
 	stroke: none
 	
 .graph
+	position: relative
 	.graph__title
 		margin-bottom: 10px
 		text-align: right
@@ -174,6 +175,21 @@ polygon
 		width: 160px
 		font-size: 14px
 		color: #4b4b4b
+	.graph__godefault
+		width: 20px 
+		height: 20px 
+		background: red 
+		position: absolute
+		left: 0
+		top: 0
+		display: none
+		cursor: pointer
+		+s(close1)
+		left: 113px 
+		top: 200px 
+	&.is-changed
+		.graph__godefault
+			display: block
 		
 .info
 	position: relative
