@@ -301,7 +301,7 @@
 		    // options = options || {};
 		    var canvas = bar;
 		    canvas = canvas.transition();
-		    i = 0;
+		    i = -1;
 		    canvas.selectAll('rect')
 		            .attr("height", function(d) { // Set bars height
 		                console.log(i);
@@ -310,9 +310,10 @@
 		            });
 
 		    // canvas.selectAll("rect").data(newdata).enter();
-		    canvas
-		            .filter(function (d) { return - y(d) > height})
-		            .attr('class', 'bar over')
+		    // canvas
+		    //         .filter(function (d) { return - y(d) > height})
+		    //         .attr('class', 'bar over')
+
 		    console.log(canvas);
 		    console.log(newdata);
 
