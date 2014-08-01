@@ -6,7 +6,7 @@
 	<meta name="viewport" content="initial-scale=1"/>
 	<link rel="stylesheet" media="screen" href="css/screen.css" >
 </head>
-<body>
+<body id="b">
 <!-- BEGIN  out-->
 <div class="out">
 	<!-- begin header  -->
@@ -237,11 +237,18 @@
 					.attr('class', "bar active")
 		}
 
-		inputEl.on('input', function(){
+		inputEl.on('change', function(){
 			var value = parseInt(inputEl[0][0].value, 10) || rangeEl[0][0].value || 20;
 			rangeEl[0][0].value = value;
 
 			render(value, {animate: true});
+		});
+
+		$('body').on('click', '.graph__godefault', function(event) {
+			event.preventDefault();
+			myi = $(this).parents('.graph').find('.input-text');
+			myi.val(myi.data('default'));
+			myi.trigger('change');
 		});
 
 		rangeEl.on("input", function(){
@@ -288,7 +295,23 @@
 		yAxisEl
 			.attr("class", "y axis")
 			.attr("transform", "translate(" + width + ", 0)");
+		this.updateme = function updateme(newdata){
+		    // options = options || {};
+		    var canvas = bar;
+		    canvas = canvas.transition();
+		    canvas.selectAll('rect')
+		            .attr("height", function(d) { // Set bars height
+		                return 100;
+		            });
+		    // canvas.selectAll(".bar").data(newdata)
+		    //                     .enter();
+		    canvas
+		            .filter(function (d) { return - y(d) > height})
+		            .attr('class', 'bar over')
+		    console.log(canvas);
+		    console.log(newdata);
 
+		};
 
 		render(value);
 	};
@@ -320,6 +343,12 @@
 			myi = $(this).parents('.graph').find('.input-text');
 			myi.val(myi.data('default'));
 			myi.trigger('input');
+		});
+		$('body').click(function(event) {
+		    myd = [10, 13, 14, 15, 16, 60, 70, 71, 73, 80, 120, 121,
+		                        133, 142, 148, 151, 152, 154, 160, 170, 171, 172,
+		                        173, 190, 200, 300, 311, 312, 313, 314, 315, 320, 322, 325];
+		    noScaleInstanse.updateme(myd);
 		});
 	});
 </script>

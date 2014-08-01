@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1"/>
     <link rel="stylesheet" media="screen" href="css/screen.css" >
     <!--[if IE]><script src="js/html5shiv.js"></script><![endif]-->
-<body>
+<body id="b">
     <svg style="display: none" viewBox="0 0 10 10">
         <define>
             <g id="bubble"></g>
@@ -16,11 +16,13 @@
     <div id="test3"></div>
     <div id="test2"></div>
     <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script>
         var nytimesgraph = function (element, data) {
             var that = this;
 
             this.scale = true;
+
 
             var rootEl = d3.select(element);
             var value = 150;
@@ -72,7 +74,6 @@
                             .attr("min", d3.min(data))
                             .attr("max", d3.max(data))
                             .attr("step", 1);
-
             function render (value, options) {
                 options = options || {};
                 var canvas = bar;
@@ -115,7 +116,25 @@
                         .attr('class', "bar active")
             }
 
-            inputEl.on('input', function(){
+            this.updateme = function updateme(newdata){
+                // options = options || {};
+                var canvas = bar;
+                canvas = canvas.transition();
+                canvas.selectAll('rect')
+                        .attr("height", function(d) { // Set bars height
+                            return 100;
+                        });
+                // canvas.selectAll(".bar").data(newdata)
+                //                     .enter();
+                canvas
+                        .filter(function (d) { return - y(d) > height})
+                        .attr('class', 'bar over')
+                console.log(canvas);
+                console.log(newdata);
+
+            };
+
+            inputEl.on('change', function(){
                 var value = parseInt(inputEl[0][0].value, 10) || rangeEl[0][0].value || 20;
                 rangeEl[0][0].value = value;
 
@@ -135,6 +154,7 @@
                     .data(data)
                     .enter().append("g")
                     .attr("class", "bar");
+            // console.log(bar);
 
             bar.append("rect")
                     .attr("x", 0)
@@ -171,13 +191,24 @@
             render(value);
         };
 
-        new nytimesgraph("#test1", d3.range(40).map(function(val, i){ return (i+1) * 8}));
-        new nytimesgraph("#test2", [10, 13, 14, 15, 16, 60, 70, 71, 73, 80, 120, 121,
-                                133, 142, 148, 151, 152, 154, 160, 170, 171, 172,
-                                173, 190, 200, 300, 311, 312, 313, 314, 315, 320, 322, 325]);
+        
+        $(document).ready(function() {
+            new nytimesgraph("#test1", d3.range(40).map(function(val, i){ return (i+1) * 8}));
+            new nytimesgraph("#test2", [10, 13, 14, 15, 16, 60, 70, 71, 73, 80, 120, 121,
+                                    133, 142, 148, 151, 152, 154, 160, 170, 171, 172,
+                                    173, 190, 200, 300, 311, 312, 313, 314, 315, 320, 322, 325]);
 
-        var noScaleInstanse = new nytimesgraph("#test3", d3.range(40).map(function(val, i){ return (i+1) * 8}));
-        noScaleInstanse.scale = false;
-
+            var noScaleInstanse = new nytimesgraph("#test3", d3.range(40).map(function(val, i){ return (i+1) * 8}));
+            //noScaleInstanseupdate('123');
+            noScaleInstanse.scale = false;
+            
+            $('body').click(function(event) {
+                myd = [10, 13, 14, 15, 16, 60, 70, 71, 73, 80, 120, 121,
+                                    133, 142, 148, 151, 152, 154, 160, 170, 171, 172,
+                                    173, 190, 200, 300, 311, 312, 313, 314, 315, 320, 322, 325];
+                console.log('runupd');
+                noScaleInstanse.updateme(myd);
+            });
+        });
 
     </script>
