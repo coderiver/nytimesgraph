@@ -138,196 +138,236 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="js/lib/sticky.js"></script>
 <script>
-	var nytimesgraph = function (element, data, datamin, datamax, defaultvalue) {
-		var that = this;
+		var nytimesgraph = function (element, data, datamin, datamax, defaultvalue) {
+			var that = this;
 
-		this.scale = true;
+			this.scale = true;
 
-		var rootEl = d3.select(element);
-		var value = 150;
-
-
-		// A formatter for counts.
-		var formatCount = d3.format(",.0f");
-
-		var margin = {top: 0, right: 30, bottom: 30, left: 180},
-				width = 620 - margin.left - margin.right,
-				height = 200 - margin.top - margin.bottom;
-
-		var x = d3.scale.linear()
-				.domain([0, data.length])
-				.range([0, width]);
-
-		var y = d3.scale.linear()
-				.domain([0, d3.max(data)])
-				.range([height, 0]);
-
-		var valAprox = d3.scale.quantile()
-				.domain([d3.min(data), d3.max(data)])
-				.range(data);
-
-		var xAxis = d3.svg.axis()
-				.scale(d3.scale.linear().domain([datamin, datamax]).range([0, width]))
-				.orient("bottom");
-
-		var yAxis = d3.svg.axis()
-				.scale(d3.scale.linear().domain([0, value * 2]).range([height, 0]))
-				.tickSize(-width).tickSubdivide(true)
-				.orient("right");
-
-		var svg = rootEl.append("svg")
-				.attr("width", width + margin.left + margin.right)
-				.attr("height", height + margin.top + margin.bottom)
-				.append("g")
-				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-		var inputEl = rootEl.append("input")
-				.attr("type", "text")
-				.attr("class", "input-text")
-				.attr('data-default',defaultvalue)
-				.attr("value", defaultvalue);
-
-		var rangeEl = rootEl.append("input")
-						.attr("type", "range")
-						.attr("class", "input-range")
-						.attr("value", value)
-						.attr("min", d3.min(data))
-						.attr("max", d3.max(data))
-						.attr("step", 1);
-
-		function render (value, options) {
-			options = options || {};
-			var canvas = bar;
-
-			if (that.scale) {
-				if (options.animate) { canvas = canvas.transition(); }
-
-				y.domain([0, value]);
-
-				canvas
-						.attr('class', 'bar')
-						.attr("transform", function (d, i) {
-							return "translate(" + x(i) + "," + y(d/2) + ")";
-						})
+			var rootEl = d3.select(element);
+			var value = 150;
 
 
-				canvas.selectAll('rect')
-						.attr("height", function(d) { // Set bars height
-							return height - y(d/2);
-						})
+			// A formatter for counts.
+			var formatCount = d3.format(",.0f");
 
-				canvas
-						.filter(function (d) { return - y(d) > height})
-						.attr('class', 'bar over')
+			var margin = {top: 0, right: 30, bottom: 30, left: 180},
+					width = 620 - margin.left - margin.right,
+					height = 200 - margin.top - margin.bottom;
 
-				canvas.select('polygon')
-						.attr("points", function(d){
-							var dY = - y(d/2)  ;
-							return '0 '+ dY +', '+ barWidth +' '+ dY +', '+ barWidth +' '+ (dY + barWidth/2) +', '+ barWidth/2 +' '+ (dY) +', 0 '+ (dY + barWidth/2) ;
-						})
+			var x = d3.scale.linear()
+					.domain([0, data.length])
+					.range([0, width]);
 
-				yAxis.scale(d3.scale.linear().domain([0, value * 2]).range([height, 0]));
-				yAxisEl.call(yAxis);
+			var y = d3.scale.linear()
+					.domain([0, d3.max(data)])
+					.range([height, 0]);
+
+			var valAprox = d3.scale.quantile()
+					.domain([d3.min(data), d3.max(data)])
+					.range(data);
+
+			var xAxis = d3.svg.axis()
+					.scale(d3.scale.linear().domain([datamin, datamax]).range([0, width]))
+					.orient("bottom");
+
+			var yAxis = d3.svg.axis()
+					.scale(d3.scale.linear().domain([0, value * 2]).range([height, 0]))
+					.tickSize(-width).tickSubdivide(true)
+					.orient("right");
+
+			var svg = rootEl.append("svg")
+					.attr("width", width + margin.left + margin.right)
+					.attr("height", height + margin.top + margin.bottom)
+					.append("g")
+					.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+			var inputEl = rootEl.append("input")
+					.attr("type", "text")
+					.attr("class", "input-text")
+					.attr('data-default',defaultvalue)
+					.attr("value", defaultvalue);
+
+			var rangeEl = rootEl.append("input")
+							.attr("type", "range")
+							.attr("class", "input-range")
+							.attr("value", value)
+							.attr("min", d3.min(data))
+							.attr("max", d3.max(data))
+							.attr("step", 1);
+			// то что рисует начальный график, и обновляет его масштаб
+			function render (value, options) {
+				options = options || {};
+				var canvas = bar;
+
+				if (that.scale || 1==1) {
+					if (options.animate) { canvas = canvas.transition(); }
+
+					y.domain([0, value]);
+
+					canvas
+							.attr('class', 'bar')
+							.attr("transform", function (d, i) {
+								return "translate(" + x(i) + "," + y(d/2) + ")";
+							})
+
+
+					canvas.selectAll('rect')
+							.attr("height", function(d) { // Set bars height
+								return height - y(d/2);
+							})
+
+					canvas
+							.filter(function (d) { return - y(d) > height})
+							.attr('class', 'bar over')
+
+					canvas.select('polygon')
+							.attr("points", function(d){
+								var dY = - y(d/2)  ;
+								return '0 '+ dY +', '+ barWidth +' '+ dY +', '+ barWidth +' '+ (dY + barWidth/2) +', '+ barWidth/2 +' '+ (dY) +', 0 '+ (dY + barWidth/2) ;
+							})
+
+					yAxis.scale(d3.scale.linear().domain([0, value * 2]).range([height, 0]));
+					yAxisEl.call(yAxis);
+				}
+
+				// Set active element
+				// canvas
+				// 		.attr('class', "bar")
+				// 		.filter(function(d){ return d == valAprox(value);})
+				// 		.attr('class', "bar active");
+				    //         var xReverse = d3.scale.linear()
+				    //                         .range([0, data.length])
+				    //                         .domain([parseInt(rangeEl.attr("min"), 10),
+				    //         parseInt(rangeEl.attr("max"), 10)]);
+
+				    //         svg.selectAll(".bar")
+				    //             .filter(function(d, i){ return i == Math.round(xReverse(parseInt(inputEl[0][0].value, 10))); })
+								// .attr('class', "bar active");
+					updateSelected();
 			}
 
-			// Set active element
-			canvas
-					.attr('class', "bar")
-					.filter(function(d){ return d == valAprox(value);})
-					.attr('class', "bar active")
-		}
+			
+			function updateSelected(){
+			        svg.selectAll(".bar.active").classed("active", false);
 
-		inputEl.on('change', function(){
-			var value = parseInt(inputEl[0][0].value, 10) || rangeEl[0][0].value || 20;
-			rangeEl[0][0].value = value;
+	                var xReverse = d3.scale.linear()
+	                                .range([0, data.length])
+	                                .domain([parseInt(rangeEl.attr("min"), 10),
+	                parseInt(rangeEl.attr("max"), 10)]);
 
-			render(value, {animate: true});
-		});
+	                svg.selectAll(".bar")
+	                    .filter(function(d, i){ return i == Math.round(xReverse(parseInt(inputEl[0][0].value, 10))); })
+	    				.attr('class', "bar active");
+			}
 
-		$('body').on('click', '.graph__godefault', function(event) {
-			event.preventDefault();
-			myi = $(this).parents('.graph').find('.input-text');
-			myi.val(myi.data('default'));
-			myi.trigger('change');
-		});
+			
 
-		rangeEl.on("input", function(){
-			var value = parseInt(rangeEl[0][0].value, 10);
-			inputEl[0][0].value =  value;
+			var barWidth = (Math.round(width/data.length)  - 2);
 
+			var bar = svg.selectAll(".bar")
+					.data(data)
+					.enter().append("g")
+					.attr("class", "bar");
+
+			bar.append("rect")
+					.attr("x", 0)
+					.attr("width", barWidth);
+
+
+			bar.append("polygon");
+
+			var bubbles = bar.append("g")
+					.attr("class", "bubble");
+
+			bubbles.append("use")
+					.attr("xlink:href", "#bubble");
+
+			bubbles.append("text")
+					.attr("dy", ".75em")
+					.attr("y", -16)
+					.attr("x", barWidth/2)
+					.attr("text-anchor", "middle")
+					.text(function(d) { return formatCount(d);});
+
+			svg.append("g")
+					.attr("class", "x axis")
+					.attr("transform", "translate(0," + height + ")")
+					.call(xAxis);
+
+			var yAxisEl = svg.append("g");
+
+			yAxisEl
+				.attr("class", "y axis")
+				.attr("transform", "translate(" + width + ", 0)");
+			// ====================================
+			// вот тут я пытаюсь обновлять график безуспешно
+			// ====================================
+			this.updateme = function updateme(newdata){
+				data = newdata;
+	 
+	            // обновляем значения data
+	            svg.selectAll(".bar").data(data);
+	            svg.selectAll("rect").data(data);
+	            svg.selectAll(".bar text").data(data);
+	 
+	            // перерисовываем все с новыми значениями
+	            svg.selectAll(".bar").selectAll('rect')
+	                        .attr("height", function(d) { // Set bars height
+	                            return height - y(d/2);
+	                        });
+	            svg.selectAll(".bar").attr("transform", function (d, i) {
+	                            return "translate(" + x(i) + "," + y(d/2) + ")";
+	                        })
+	            svg.selectAll(".bar").select('polygon')
+	                        .attr("points", function(d){
+	                            var dY = - y(d/2)  ;
+	                            return '0 '+ dY +', '+ barWidth +' '+ dY +', '+ barWidth +' '+ (dY + barWidth/2) +', '+ barWidth/2 +' '+ (dY) +', 0 '+ (dY + barWidth/2) ;
+	                        })
+	            svg.selectAll(".bar text").text(function(d) { return formatCount(d);});
+	 
+	            // valAprox тоже зависит от data
+	            valAprox.domain([d3.min(data), d3.max(data)]).range(data);
+	 
+	            // обновляем выделенный столбик
+	            svg.selectAll(".bar.active").classed("active", false);
+	            // svg.selectAll(".bar")
+	            //         .filter(function(d){ return d == valAprox(value); })
+	            //         .attr('class', "bar active");
+	    //         var xReverse = d3.scale.linear()
+	    //                         .range([0, data.length])
+	    //                         .domain([parseInt(rangeEl.attr("min"), 10),
+	    //         parseInt(rangeEl.attr("max"), 10)]);
+
+	    //         svg.selectAll(".bar")
+	    //             .filter(function(d, i){ return i == Math.round(xReverse(parseInt(inputEl[0][0].value, 10))); })
+					// .attr('class', "bar active");
+					updateSelected();
+			};
+			// изменение значения в слайдере
+			rangeEl.on("input", function(){
+				var value = parseInt(rangeEl[0][0].value, 10);
+				inputEl[0][0].value =  value;
+
+				render(value);
+			});
+			// изменение значения в инпуте
+			inputEl.on('change', function(){
+				var value = parseInt(inputEl[0][0].value, 10) || rangeEl[0][0].value || 20;
+				rangeEl[0][0].value = value;
+
+				render(value, {animate: true});
+			});
+
+			// отрисовать начальный график
 			render(value);
-		});
-
-		var barWidth = (Math.round(width/data.length)  - 2);
-
-		var bar = svg.selectAll(".bar")
-				.data(data)
-				.enter().append("g")
-				.attr("class", "bar");
-
-		bar.append("rect")
-				.attr("x", 0)
-				.attr("width", barWidth);
-
-
-		bar.append("polygon");
-
-		var bubbles = bar.append("g")
-				.attr("class", "bubble");
-
-		bubbles.append("use")
-				.attr("xlink:href", "#bubble");
-
-		bubbles.append("text")
-				.attr("dy", ".75em")
-				.attr("y", -16)
-				.attr("x", barWidth/2)
-				.attr("text-anchor", "middle")
-				.text(function(d) { return formatCount(d);});
-
-		svg.append("g")
-				.attr("class", "x axis")
-				.attr("transform", "translate(0," + height + ")")
-				.call(xAxis);
-
-		var yAxisEl = svg.append("g");
-
-		yAxisEl
-			.attr("class", "y axis")
-			.attr("transform", "translate(" + width + ", 0)");
-
-
-		this.updateme = function updateme(newdata){
-		    // options = options || {};
-		    var canvas = bar;
-		    canvas = canvas.transition();
-		    i = -1;
-		    canvas.selectAll('rect')
-		            .attr("height", function(d) { // Set bars height
-		                console.log(i);
-		                i++;
-		                return newdata[i];
-		            });
-
-		    // canvas.selectAll("rect").data(newdata).enter();
-		    // canvas
-		    //         .filter(function (d) { return - y(d) > height})
-		    //         .attr('class', 'bar over')
-
-		    console.log(canvas);
-		    console.log(newdata);
-
 		};
-
-		render(value);
-	};
 
 	new nytimesgraph("#test1", d3.range(40).map(function(val, i){ return (i+1) * 8}), 1, 100, 0);
 	new nytimesgraph("#test2", [10, 13, 14, 15, 16, 60, 70, 71, 73, 80, 120, 121,
 							133, 142, 148, 151, 152, 154, 160, 170, 171, 172,
-							173, 190, 200, 300, 311, 312, 313, 314, 315, 320, 322, 325,325,325,325,325,325,325], 100, 1000,0);
+							173, 190, 200, 300, 311, 312, 313, 314, 315, 320, 322], 100, 1000,0);
 
-	var noScaleInstanse = new nytimesgraph("#test3", d3.range(40).map(function(val, i){ return (i+1) * 8}), 20,40, 0);
+	var noScaleInstanse = new nytimesgraph("#test3", d3.range(40).map(function(val, i){ return (i+1) * 8}), 20,140, 0);
 	noScaleInstanse.scale = false;
 
 
@@ -351,9 +391,7 @@
 			myi.trigger('input');
 		});
 		$('body').click(function(event) {
-		    myd = [10, 13, 14, 15, 16, 60, 70, 71, 73, 80, 120, 121,
-		                        133, 142, 148, 151, 152, 154, 160, 170, 171, 172,
-		                        173, 190, 200, 300, 311, 312, 313, 314, 315, 320, 322, 325,325,325,325,325,325,325,325];
+		    myd = d3.range(40).map(function(val, i){ return (i+1) * 1});
 		    noScaleInstanse.updateme(myd);
 		});
 	});
