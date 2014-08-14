@@ -55,9 +55,10 @@ polygon { fill: white; shape-rendering: crispEdges; }
 .y.axis line { stroke: none; }
 
 .graph { position: relative; }
+.graph .graph__prefix { position: absolute; left: -28px; width: 25px; text-align: right; top: -41px; font-size: 25px; }
 .graph .graph__title { margin-bottom: 10px; text-align: right; }
 .graph .graph__title span { display: inline-block; width: 70px; text-align: center; vertical-align: top; font-size: 14px; color: #9ea7b3; }
-.graph .graph__info { margin-top: -20px; width: 160px; font-size: 14px; color: #4b4b4b; }
+.graph .graph__info { margin-top: -20px; width: 160px; font-size: 14px; color: #4b4b4b; position: relative; }
 .graph .graph__godefault { width: 20px; height: 20px; background: red; position: absolute; left: 0; top: 0; display: none; cursor: pointer; background: url('../img/icons-sb5bf7df7e4.png') 0 -114px no-repeat; width: 16px; height: 16px; left: 113px; top: 200px; }
 .graph.is-changed .graph__godefault { display: block; }
 
