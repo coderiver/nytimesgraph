@@ -203,6 +203,11 @@
 				options = options || {};
 				var canvas = bar;
 
+				div = (value - datamin)/(datamax-datamin);
+				nomer = Math.round(div*40);
+				if(nomer>39){nomer = 39}
+				value = data[nomer];
+
 				if (that.scale || 1==1) {
 					if (options.animate) { canvas = canvas.transition(); }
 
@@ -355,12 +360,12 @@
 				var value = parseInt(rangeEl[0][0].value, 10);
 				inputEl[0][0].value =  value+postfix;
 				//alert(data[2]);
-				div = (value - datamin)/(datamax-datamin);
-				nomer = Math.round(div*40);
-				if(nomer>39){nomer = 39}
-				valval = data[nomer];
+				// div = (value - datamin)/(datamax-datamin);
+				// nomer = Math.round(div*40);
+				// if(nomer>39){nomer = 39}
+				// valval = data[nomer];
 				
-				render(valval);
+				render(value);
 			});
 			// изменение значения в инпуте
 			inputEl.on('change', function(){
