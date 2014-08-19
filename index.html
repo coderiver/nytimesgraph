@@ -192,10 +192,13 @@
 							.attr("type", "range")
 							.attr("class", "input-range")
 							.attr("value", value)
-							.attr("min", d3.min(data))
-							.attr("max", d3.max(data))
+							.attr("min", datamin)
+							.attr("max", datamax)
 							.attr("step", 1);
+			//.attr("min", d3.min(data))
+			//.attr("max", d3.max(data))
 			// то что рисует начальный график, и обновляет его масштаб
+			//console.log(data);
 			function render (value, options) {
 				options = options || {};
 				var canvas = bar;
@@ -351,8 +354,13 @@
 			rangeEl.on("input", function(){
 				var value = parseInt(rangeEl[0][0].value, 10);
 				inputEl[0][0].value =  value+postfix;
-
-				render(value);
+				//alert(data[2]);
+				div = (value - datamin)/(datamax-datamin);
+				nomer = Math.round(div*40);
+				if(nomer>39){nomer = 39}
+				valval = data[nomer];
+				
+				render(valval);
 			});
 			// изменение значения в инпуте
 			inputEl.on('change', function(){
