@@ -194,7 +194,7 @@
 							.attr("value", value)
 							.attr("min", datamin)
 							.attr("max", datamax)
-							.attr("step", 1);
+							.attr("step", .2);
 			//.attr("min", d3.min(data))
 			//.attr("max", d3.max(data))
 			// то что рисует начальный график, и обновляет его масштаб
@@ -206,8 +206,11 @@
 				div = (value - datamin)/(datamax-datamin);
 				nomer = Math.round(div*40);
 				if(nomer>39){nomer = 39}
+				if(nomer==0){}else{nomer=nomer-1;}
+
+
 				value = data[nomer];
-				console.log(value);
+				console.log(nomer);
 
 				if (that.scale || 1==1) {
 					if (options.animate) { canvas = canvas.transition(); }
@@ -266,7 +269,12 @@
 	                parseInt(rangeEl.attr("max"), 10)]);
 
 	                svg.selectAll(".bar")
-	                    .filter(function(d, i){ return i == Math.round(xReverse(parseInt(inputEl[0][0].value, 10))); })
+	                    .filter(function(d, i){ 
+	                    	return i == Math.round(0.5+xReverse(parseInt(inputEl[0][0].value, 10)))-1;
+	                    	//if(i<0){i = 0}
+	                    	//return i;
+
+	                    	 })
 	    				.attr('class', "bar active");
 			}
 
