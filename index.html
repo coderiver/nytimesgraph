@@ -194,6 +194,7 @@
 							.attr("value", value)
 							.attr("min", datamin)
 							.attr("max", datamax)
+							.attr('value',defaultvalue)
 							.attr("step", .2);
 			//.attr("min", d3.min(data))
 			//.attr("max", d3.max(data))
@@ -376,6 +377,8 @@
 				
 				render(value);
 			});
+			// rangeEl.val(defaultvalue);
+			// console.log(rangeEl.val());
 			// изменение значения в инпуте
 			inputEl.on('change', function(){
 				var value = parseInt(inputEl[0][0].value, 10) || rangeEl[0][0].value || 20;
@@ -388,7 +391,7 @@
 			render(value);
 		};
 
-	new nytimesgraph("#test1", d3.range(40).map(function(val, i){ return (i+1) * 8}), 1, 100, 100,'$');
+	new nytimesgraph("#test1", d3.range(40).map(function(val, i){ return (i+1) * 8}), 1, 100, 80,'$');
 	new nytimesgraph("#test2", [10, 13, 14, 15, 16, 60, 70, 71, 73, 80, 120, 121,
 							133, 142, 148, 151, 152, 154, 160, 170, 171, 172,
 							173, 190, 200, 300, 311, 312, 313, 314, 315, 320, 322], 100, 1000,0,'#');
