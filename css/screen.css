@@ -48,7 +48,7 @@ polygon { fill: white; shape-rendering: crispEdges; }
 .input-range::-moz-range-thumb { width: 13px; height: 13px; border: 1px solid white; border-radius: 50px; background: #262239; }
 .input-range::-ms-thumb { width: 13px; height: 13px; border-radius: 50px; border: 1px solid white; background: #262239; }
 
-.input-over { position: absolute; bottom: 30px; right: 26px; width: 421px; -webkit-appearance: none; height: 190px; background: red; cursor: move; opacity: 0.2; }
+.input-over { position: absolute; bottom: 30px; right: 26px; width: 421px; -webkit-appearance: none; height: 190px; cursor: move; opacity: 0; }
 
 .input-text { position: absolute; left: 0; bottom: 30px; width: 131px; border-bottom: #9ea7b3 1px solid; font-size: 25px; color: #4b4b4b; }
 
