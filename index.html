@@ -390,7 +390,7 @@
 			rangeElover.on("input", function(){
 				console.log(rangeElover);
 				var value = parseInt(rangeElover[0][0].value, 10);
-				// inputEl[0][0].value =  value+postfix;
+				inputEl[0][0].value =  value+postfix;
 				rangeEl[0][0].value = rangeElover[0][0].value;
 				$(rangeEl).trigger('input');
 				//alert(data[2]);
