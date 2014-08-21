@@ -28,6 +28,22 @@
 				<p>Die Entscheidung eine Immobilie zu kaufen ist eine der größten finanziellen Entscheidungen vieler Menschen im ganzen Leben. Bei dieser Entscheidung gehen eine Vielzahl von Faktoren ein, die bestimmen ob der Kauf einem Mietverhältnis vorzuziehen ist. Dieser Kauf-Miet-Rechner analysiert die wesentlichen Kosten die beim Kauf entstehen und errechnet die äquivalente monatliche Miete. </p>
 				<div class="graph">
 					<div class="graph__title"><span>Äquivalente Miete</span></div>
+					<div id="g2" class="graph__el"></div>
+
+					<div class="graph__info">
+						<div class="graph__prefix">$</div>
+						<span>Grunderwerbssteuer</span>
+						<div class="graph__godefault"></div>
+						<div class="info">
+							<i class="info__ico"></i>
+							<div class="info__up">
+								<div class="info__content">There are many variations of passages</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="graph">
+					<div class="graph__title"><span>Äquivalente Miete</span></div>
 					<div id="test1" class="graph__el"></div>
 
 					<div class="graph__info">
@@ -274,14 +290,20 @@
 
 			        svg.selectAll(".bar.active").classed("active", false);
 
-	                var xReverse = d3.scale.linear()
+	                // var xReverse = d3.scale.linear()
+	                //                 .range([0, data.length])
+	                //                 .domain([parseInt(rangeEl.attr("min"), 10),
+	                // parseInt(rangeEl.attr("max"), 10)]);
+
+
+	                 var xReverse = d3.scale.linear()
 	                                .range([0, data.length])
-	                                .domain([parseInt(rangeEl.attr("min"), 10),
-	                parseInt(rangeEl.attr("max"), 10)]);
+	                                .domain([rangeEl.attr("min"),
+	                rangeEl.attr("max")]);
 
 	                svg.selectAll(".bar")
 	                    .filter(function(d, i){ 
-	                    	return i == Math.round(0.5+xReverse(parseInt(inputEl[0][0].value, 10)))-1;
+	                    	return i == Math.round(0.5+xReverse(inputEl[0][0].value))-1;
 	                    	//if(i<0){i = 0}
 	                    	//return i;
 
@@ -387,6 +409,21 @@
 				// valval = data[nomer];
 				
 				render(value);
+				svg.selectAll(".bar.active").classed("active", false);
+
+	                var xReverse = d3.scale.linear()
+	                                .range([0, data.length])
+	                                .domain([rangeEl.attr("min"),
+	                rangeEl.attr("max")]);
+
+	                svg.selectAll(".bar")
+	                    .filter(function(d, i){ 
+	                    	return i == Math.round(0.5+xReverse(rangeEl[0][0].value))-1;
+	                    	//if(i<0){i = 0}
+	                    	//return i;
+
+	                    	 })
+	    				.attr('class', "bar active");
 			});
 			rangeElover.on("input", function(){
 				console.log(rangeElover);
@@ -408,12 +445,12 @@
 
 	                var xReverse = d3.scale.linear()
 	                                .range([0, data.length])
-	                                .domain([parseInt(rangeEl.attr("min"), 10),
-	                parseInt(rangeEl.attr("max"), 10)]);
+	                                .domain([rangeEl.attr("min"),
+	                rangeEl.attr("max")]);
 
 	                svg.selectAll(".bar")
 	                    .filter(function(d, i){ 
-	                    	return i == Math.round(0.5+xReverse(parseInt(rangeEl[0][0].value, 10)))-1;
+	                    	return i == Math.round(0.5+xReverse(rangeEl[0][0].value))-1;
 	                    	//if(i<0){i = 0}
 	                    	//return i;
 
@@ -441,6 +478,8 @@
 
 	var noScaleInstanse = new nytimesgraph("#test3", d3.range(40).map(function(val, i){ return (i+1) * 8}), 20,140, 0,'-');
 	noScaleInstanse.scale = false;
+
+	new nytimesgraph('#g2', [764, 784, 803, 823, 843, 862, 882, 902, 922, 941, 961, 981, 1000, 1020, 1040, 1060, 1079, 1099, 1119, 1139, 1158, 1178, 1198, 1217, 1237, 1257, 1277, 1296, 1316, 1336, 1355, 1375, 1395, 1415, 1434, 1454, 1474, 1494, 1513, 1533], 0, 7, 3.5,'%');
 
 
 
