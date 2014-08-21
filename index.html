@@ -29,6 +29,7 @@
 				<div class="graph">
 					<div class="graph__title"><span>Äquivalente Miete</span></div>
 					<div id="test1" class="graph__el"></div>
+
 					<div class="graph__info">
 						<div class="graph__prefix">$</div>
 						<span>Grunderwerbssteuer</span>
@@ -196,6 +197,14 @@
 							.attr("max", datamax)
 							.attr('value',defaultvalue)
 							.attr("step", .2);
+			var rangeElover = rootEl.append("input")
+							.attr("type", "range")
+							.attr("class", "input-over")
+							.attr("value", value)
+							.attr("min", datamin)
+							.attr("max", datamax)
+							.attr('value',defaultvalue)
+							.attr("step", .2);
 			//.attr("min", d3.min(data))
 			//.attr("max", d3.max(data))
 			// то что рисует начальный график, и обновляет его масштаб
@@ -262,6 +271,7 @@
 
 			
 			function updateSelected(){
+
 			        svg.selectAll(".bar.active").classed("active", false);
 
 	                var xReverse = d3.scale.linear()
@@ -377,6 +387,21 @@
 				
 				render(value);
 			});
+			rangeElover.on("input", function(){
+				console.log(rangeElover);
+				var value = parseInt(rangeElover[0][0].value, 10);
+				// inputEl[0][0].value =  value+postfix;
+				rangeEl[0][0].value = rangeElover[0][0].value;
+				$(rangeEl).trigger('input');
+				//alert(data[2]);
+				// div = (value - datamin)/(datamax-datamin);
+				// nomer = Math.round(div*40);
+				// if(nomer>39){nomer = 39}
+				// valval = data[nomer];
+				
+				render(value);
+				// updateSelected();
+			});
 			// rangeEl.val(defaultvalue);
 			// console.log(rangeEl.val());
 			// изменение значения в инпуте
@@ -422,6 +447,9 @@
 		$('body').click(function(event) {
 		    myd = d3.range(40).map(function(val, i){ return (i+1) * 1});
 		    noScaleInstanse.updateme(myd);
+		});
+		$('.input-over').change(function(event) {
+			
 		});
 	});
 </script>
