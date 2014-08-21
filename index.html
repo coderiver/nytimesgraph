@@ -286,29 +286,47 @@
 			}
 
 			
-			function updateSelected(){
+			// function updateSelected(){
 
-			        svg.selectAll(".bar.active").classed("active", false);
+			//         svg.selectAll(".bar.active").classed("active", false);
 
-	                // var xReverse = d3.scale.linear()
-	                //                 .range([0, data.length])
-	                //                 .domain([parseInt(rangeEl.attr("min"), 10),
-	                // parseInt(rangeEl.attr("max"), 10)]);
+	  //               // var xReverse = d3.scale.linear()
+	  //               //                 .range([0, data.length])
+	  //               //                 .domain([parseInt(rangeEl.attr("min"), 10),
+	  //               // parseInt(rangeEl.attr("max"), 10)]);
 
 
-	                 var xReverse = d3.scale.linear()
-	                                .range([0, data.length])
-	                                .domain([rangeEl.attr("min"),
-	                rangeEl.attr("max")]);
+	  //                var xReverse = d3.scale.linear()
+	  //                               .range([0, data.length])
+	  //                               .domain([rangeEl.attr("min"),
+	  //               rangeEl.attr("max")]);
 
-	                svg.selectAll(".bar")
-	                    .filter(function(d, i){ 
-	                    	return i == Math.round(0.5+xReverse(inputEl[0][0].value))-1;
-	                    	//if(i<0){i = 0}
-	                    	//return i;
+	  //               svg.selectAll(".bar")
+	  //                   .filter(function(d, i){ 
+	  //                   	return i == Math.round(0.5+xReverse(inputEl[0][0].value))-1;
+	  //                   	//if(i<0){i = 0}
+	  //                   	//return i;
 
-	                    	 })
-	    				.attr('class', "bar active");
+	  //                   	 })
+	  //   				.attr('class', "bar active");
+			// }
+			function updateSelected() {
+
+				svg.selectAll(".bar.active").classed("active", false);
+
+				var xReverse = d3.scale.linear()
+					.range([0, data.length])
+					.domain([rangeEl.attr("min"),
+						rangeEl.attr("max")]);
+
+				svg.selectAll(".bar")
+					.filter(function (d, i) {
+						return i == Math.round(0.5 + xReverse(inputEl[0][0].value)) - 1;
+						//if(i<0){i = 0}
+						//return i;
+
+					})
+					.attr('class', "bar active");
 			}
 
 			
