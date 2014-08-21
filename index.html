@@ -378,6 +378,7 @@
 			// изменение значения в слайдере
 			rangeEl.on("input", function(){
 				var value = parseInt(rangeEl[0][0].value, 10);
+				value = rangeEl[0][0].value;
 				inputEl[0][0].value =  value+postfix;
 				//alert(data[2]);
 				// div = (value - datamin)/(datamax-datamin);
@@ -390,6 +391,7 @@
 			rangeElover.on("input", function(){
 				console.log(rangeElover);
 				var value = parseInt(rangeElover[0][0].value, 10);
+				value = rangeElover[0][0].value;
 				inputEl[0][0].value =  value+postfix;
 				rangeEl[0][0].value = rangeElover[0][0].value;
 				$(rangeEl).trigger('input');
