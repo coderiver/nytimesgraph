@@ -374,7 +374,7 @@
 			// ====================================
 			// вот тут я пытаюсь обновлять график безуспешно
 			// ====================================
-			this.updateme = function updateme(newdata){
+			this.updateme = function updateme(newdata, maxY){
 				data = newdata;
 	 
 	            // обновляем значения data
@@ -414,6 +414,10 @@
 	    //             .filter(function(d, i){ return i == Math.round(xReverse(parseInt(inputEl[0][0].value, 10))); })
 					// .attr('class', "bar active");
 					updateSelected();
+
+	            if (maxY) {
+	                render(maxY * 2);
+	            }
 			};
 			// изменение значения в слайдере
 			rangeEl.on("input", function(){
@@ -519,9 +523,9 @@
 			myi.val(myi.data('default'));
 			myi.trigger('input');
 		});
-		$('body').click(function(event) {
+		$('.l-col2').click(function(event) {
 		    myd = d3.range(40).map(function(val, i){ return (i+1) * 1});
-		    noScaleInstanse.updateme(myd);
+		    noScaleInstanse.updateme(myd, 50);
 		});
 		$('.input-over').change(function(event) {
 			
