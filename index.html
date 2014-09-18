@@ -156,7 +156,7 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="js/lib/sticky.js"></script>
 <script>
-		var nytimesgraph = function (element, data, datamin, datamax, defaultvalue,postfix) {
+		var nytimesgraph = function (element, data, datamin, datamax, defaultvalue,postfix,numberof) {
 			var that = this;
 
 			this.scale = true;
@@ -212,7 +212,7 @@
 							.attr("min", datamin)
 							.attr("max", datamax)
 							.attr('value',defaultvalue)
-							.attr("step", .2);
+							.attr("step", .02);
 			var rangeElover = rootEl.append("input")
 							.attr("type", "range")
 							.attr("class", "input-over")
@@ -220,7 +220,7 @@
 							.attr("min", datamin)
 							.attr("max", datamax)
 							.attr('value',defaultvalue)
-							.attr("step", .2);
+							.attr("step", .02);
 			//.attr("min", d3.min(data))
 			//.attr("max", d3.max(data))
 			// то что рисует начальный график, и обновляет его масштаб
@@ -228,11 +228,16 @@
 			function render (value, options) {
 				options = options || {};
 				var canvas = bar;
-
+				//alert(datamin);
+				/// !!!!
 				div = (value - datamin)/(datamax-datamin);
-				nomer = Math.round(div*40);
-				if(nomer>39){nomer = 39}
-				if(nomer==0){}else{nomer=nomer-1;}
+				
+					nomer = Math.round(div*numberof);
+					if(nomer>numberof-1){nomer = numberof-1}
+					if(nomer==0){}else{nomer=nomer-1;}
+				
+				
+				
 
 
 				value = data[nomer];
@@ -510,15 +515,15 @@
 			render(value);
 		};
 
-	new nytimesgraph("#test1", d3.range(40).map(function(val, i){ return (i+1) * 8}), 1, 100, 80,'');
+	new nytimesgraph("#test1", d3.range(6).map(function(val, i){ return (i+1) * 8}), 1, 100, 80,'', 6);
 	new nytimesgraph("#test2", [10, 13, 14, 15, 16, 60, 70, 71, 73, 80, 120, 121,
 							133, 142, 148, 151, 152, 154, 160, 170, 171, 172,
-							173, 190, 200, 300, 311, 312, 313, 314, 315, 320, 322], 100, 1000,0,'#');
+							173, 190, 200, 300, 311, 312, 313, 314, 315, 320, 322], 100, 1000,0,'#',40);
 
-	var noScaleInstanse = new nytimesgraph("#test3", d3.range(40).map(function(val, i){ return (i+1) * 8}), 20,140, 0,'-');
+	var noScaleInstanse = new nytimesgraph("#test3", d3.range(40).map(function(val, i){ return (i+1) * 8}), 20,140, 0,'-',40);
 	noScaleInstanse.scale = false;
 
-	new nytimesgraph('#g2', [764, 784, 803, 823, 843, 862, 882, 902, 922, 941, 961, 981, 1000, 1020, 1040, 1060, 1079, 1099, 1119, 1139, 1158, 1178, 1198, 1217, 1237, 1257, 1277, 1296, 1316, 1336, 1355, 1375, 1395, 1415, 1434, 1454, 1474, 1494, 1513, 1533], 0, 7, 3.5,'%');
+	new nytimesgraph('#g2', [764, 784, 803, 823, 843, 862, 882, 902, 922, 941, 961, 981, 1000, 1020, 1040, 1060, 1079, 1099, 1119, 1139, 1158, 1178, 1198, 1217, 1237, 1257, 1277, 1296, 1316, 1336, 1355, 1375, 1395, 1415, 1434, 1454, 1474, 1494, 1513, 1533], 0, 7, 3.5,'%',40);
 
 
 
