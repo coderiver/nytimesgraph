@@ -57,7 +57,17 @@ body
 	font-size: 16px 
 	line-height: 1.375
 	color: #4B4B4B 
-
+	&.is-touch
+		.input-range
+			&::-webkit-slider-thumb
+				width: 24px
+				height: 24px
+			&::-moz-range-thumb
+				width: 24px
+				height: 24px
+			&::-ms-thumb
+				width: 24px
+				height: 24px
 
 // common blocks			
 .bar
@@ -105,6 +115,7 @@ polygon
 	margin: 0
 	border: none
 	outline: none
+	z-index: 4 
 	// no focus outline
 	&::-moz-range-track
 		border: inherit
@@ -145,8 +156,10 @@ polygon
 	width: 421px
 	-webkit-appearance: none
 	height: 190px
+	background: none
 	cursor: move
 	opacity: 0
+	z-index: 2 
 // thumb
 
 .input-text
