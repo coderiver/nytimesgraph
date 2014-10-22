@@ -237,10 +237,6 @@
 					if(nomer>numberof-1){nomer = numberof-1}
 					if(nomer==0){}else{nomer=nomer-1;}
 				
-				
-				
-
-
 				value = data[nomer];
 				console.log(nomer);
 
@@ -553,6 +549,15 @@
 		$('.input-over').change(function(event) {
 			
 		});
+		// touch
+		function is_touch_device() {
+		 return (('ontouchstart' in window)
+		      || (navigator.MaxTouchPoints > 0)
+		      || (navigator.msMaxTouchPoints > 0));
+		}
+		if (is_touch_device()) {
+			$('body').addClass('is-touch');
+		}
 	});
 </script>
 </body>
